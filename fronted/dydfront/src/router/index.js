@@ -2,12 +2,13 @@ import { createRouter, createWebHistory } from 'vue-router'
 import IndexView  from '@/views/IndexView.vue'
 import ChartView  from '@/views/ChartView.vue'
 import TableView  from '@/views/TableView.vue'
+import LoginView  from '@/views/LoginView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: '/index',
       name: 'index',
       component: IndexView
     },
@@ -20,6 +21,11 @@ const router = createRouter({
       path: '/table',
       name: 'table',
       component: TableView
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginView
     },
   ]
 })

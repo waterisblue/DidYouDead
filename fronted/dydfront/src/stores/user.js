@@ -10,3 +10,13 @@ export const useCounterStore = defineStore('counter', () => {
 
   return { count, doubleCount, increment }
 })
+
+export const useUserStore = defineStore('user', () => {
+  const token = ref("")
+
+  function setToken(token){
+    this.token = token
+  }
+
+  return { token, setToken }
+})
