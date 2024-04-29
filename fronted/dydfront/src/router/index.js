@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import IndexView  from '@/views/IndexView.vue'
 import ChartView  from '@/views/ChartView.vue'
-import TableView  from '@/views/TableView.vue'
 import LoginView  from '@/views/LoginView.vue'
 import BubbleView from '@/views/BubbleView.vue'
+import FireServiceView from '@/views/FireServiceView.vue'
+import TestamentSaveView from '@/views/TestamentSaveView.vue'
 
 import LoginComponent from '@/components/LoginComponent.vue'
 import RegisterComponent from '@/components/RegisterComponent.vue'
@@ -43,6 +44,16 @@ const router = createRouter({
         }
       ]
     },
+    {
+      path: '/fireservice',
+      name: 'fireService',
+      component: FireServiceView
+    },
+    {
+      path: '/testament',
+      name: 'testament',
+      component: TestamentSaveView
+    }
   ]
 })
 

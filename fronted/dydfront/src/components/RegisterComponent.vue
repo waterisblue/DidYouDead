@@ -5,7 +5,7 @@
         <LoginInputComponent inputText="确认密码" />
         <div class="btns">
             <div class="registerBtn">
-                <LoginBtnComponent btnText="注册" />
+                <LoginBtnComponent btnText="注册" @click="registerFun()" />
             </div>
         </div>
     </div>
@@ -14,8 +14,13 @@
 <script setup>
 import LoginInputComponent from '../components/LoginInputComponent.vue'
 import LoginBtnComponent from '../components/LoginBtnComponent.vue'
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
 
+function registerFun(){
+    router.push('/')
+}
 </script>
 
 

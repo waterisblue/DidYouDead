@@ -1,14 +1,13 @@
 <template>
     <transition name="bubbleAni" appear>
-        <div class="bubble" :id="innerId" @click="bubbleClick('/index')">
+        <div class="bubble" :id="innerId" @click="bubbleClick(innerId)">
             {{innerText}}
         </div>
     </transition>
 </template>
 
 <script setup>
-    import { ref } from 'vue';
-import { defineProps } from 'vue';
+    import { defineProps } from 'vue';
     import { useRouter } from 'vue-router';
 
     const router = useRouter()
@@ -24,7 +23,7 @@ import { defineProps } from 'vue';
         bubble.style.width = '80rem'
         bubble.style.height = '80rem'
         bubble.style.opacity = '0'
-        setTimeout(()=>{router.push(path)}, 1000)
+        setTimeout(()=>{router.push(props.innerId)}, 1000)
     }
 </script>
 <style scoped>

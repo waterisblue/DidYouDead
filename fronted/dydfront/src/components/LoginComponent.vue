@@ -4,7 +4,7 @@
         <LoginInputComponent inputText="密码" />
         <div class="btns">
             <div class="loginBtn">
-                <LoginBtnComponent btnText="登录" btnColor="indigo-darken-3" />
+                <LoginBtnComponent btnText="登录" btnColor="indigo-darken-3" @click="jump('/bubble')" />
             </div>
             <div class="registerBtn" @click="jump('/register')">
                 <LoginBtnComponent btnText="注册"/>
