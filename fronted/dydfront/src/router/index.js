@@ -3,6 +3,10 @@ import IndexView  from '@/views/IndexView.vue'
 import ChartView  from '@/views/ChartView.vue'
 import TableView  from '@/views/TableView.vue'
 import LoginView  from '@/views/LoginView.vue'
+import BubbleView from '@/views/BubbleView.vue'
+
+import LoginComponent from '@/components/LoginComponent.vue'
+import RegisterComponent from '@/components/RegisterComponent.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,14 +22,26 @@ const router = createRouter({
       component: ChartView
     },
     {
-      path: '/table',
-      name: 'table',
-      component: TableView
+      path: '/bubble',
+      name: 'bubble',
+      component: BubbleView
     },
     {
-      path: '/login',
+      path: '/',
       name: 'login',
-      component: LoginView
+      component: LoginView,
+      children: [
+        {
+          path: '/',
+          name: 'loginComponent',
+          component: LoginComponent
+        },
+        {
+          path: '/register',
+          name: "registerComponent",
+          component: RegisterComponent
+        }
+      ]
     },
   ]
 })

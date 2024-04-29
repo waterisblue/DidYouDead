@@ -37,4 +37,4 @@
     router.push(path)
   }
 
-</script>./stores/user
+</script>
