@@ -1,57 +1,44 @@
 <template>
-    <v-container fluid class="fullScreen">
-        <div class="toolBar" @click="checkUrl('/bubble')">
-            back
-        </div>
-        <div class="testamentInput">
-            <div class="testamentText">
-                <v-textarea label="遗嘱" variant="solo-filled" style="min-height: 80vh;"></v-textarea>
-            </div>
-            <div class="testamentFiles">
+    <v-layout class="rounded rounded-md">
+        <v-app-bar title="DidYouDead">
+            <v-btn @click="checkUrl('/bubble')">返回菜单</v-btn>
+        </v-app-bar>
 
-            </div>
-        </div>
+        <v-navigation-drawer>
+            <v-list density="compact" nav>
+                <v-list-item prepend-icon="mdi-view-dashboard" title="首页" value="index" @click="checkUrl('/testament')"></v-list-item>
+                <v-list-item prepend-icon="mdi-forum" title="遗嘱制定" value="TestamentDesign" @click="checkUrl('/testament/design')"></v-list-item>
+                <v-list-item prepend-icon="mdi-forum" title="我的遗嘱" value="MyTestament" @click="checkUrl('/testament/my')"></v-list-item>
+            </v-list>
+        </v-navigation-drawer>
 
-    </v-container>
+        <v-main class="d-flex align-center justify-center main">
+            <span v-if="indexCheck">建立一个属于你的遗嘱</span>
+            <RouterView />
+        </v-main>
+    </v-layout>
 </template>
 
+<style scoped>
+.main {
+    height: 100vh;
+}
+</style>
+
 <script setup>
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
-
-function checkUrl(path){
+let indexCheck = ref(true)
+// 用于vue-router
+function checkUrl(path) {
+    if(path != '/testament')
+        indexCheck.value = false
+    else
+        indexCheck.value = true
+    
     router.push(path)
 }
+
 </script>
-
-<style scoped>
-.fullScreen {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    .toolBar {
-        flex: 1;
-    }
-
-    .testamentInput {
-        flex: 30;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-
-        .testamentText {
-            flex: 1;
-            background-color: aliceblue
-        }
-
-        .testamentFiles {
-            flex: 1;
-            background-color: antiquewhite;
-        }
-    }
-
-}
-</style>

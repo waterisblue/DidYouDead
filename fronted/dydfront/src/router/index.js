@@ -1,13 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import IndexView  from '@/views/IndexView.vue'
-import ChartView  from '@/views/ChartView.vue'
-import LoginView  from '@/views/LoginView.vue'
+
+import IndexView from '@/views/IndexView.vue'
+import ChartView from '@/views/ChartView.vue'
+import LoginView from '@/views/LoginView.vue'
 import BubbleView from '@/views/BubbleView.vue'
 import FireServiceView from '@/views/FireServiceView.vue'
 import TestamentSaveView from '@/views/TestamentSaveView.vue'
 
+
 import LoginComponent from '@/components/LoginComponent.vue'
 import RegisterComponent from '@/components/RegisterComponent.vue'
+import TestamentDesignComponent from '@/components/TestamentDesignComponent.vue'
+import MyTestamentComponent from '@/components/MyTestamentComponent.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -52,7 +56,17 @@ const router = createRouter({
     {
       path: '/testament',
       name: 'testament',
-      component: TestamentSaveView
+      component: TestamentSaveView,
+      children: [
+        {
+          path: '/testament/my',
+          component: MyTestamentComponent
+        },
+        {
+          path: '/testament/design',
+          component: TestamentDesignComponent
+        }
+      ]
     }
   ]
 })

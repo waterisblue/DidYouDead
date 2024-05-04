@@ -6,15 +6,17 @@
 
         <div class="timeLine">
             <FireServiceTimeLineComponent />
-            <div>
-                123
-            </div>
+            <!-- <FireOneTapComponent /> -->
+            <FireTwoTapComponent />
         </div>
     </v-container>
 </template>
 
 <script setup>
 import FireServiceTimeLineComponent from '@/components/FireServiceTimeLineComponent.vue'
+import FireOneTapComponent from '@/components/FireOneTapComponent.vue'
+import FireTwoTapComponent from '@/components/FireTwoTapComponent.vue'
+
 import { useRouter } from 'vue-router';
 
 const router = useRouter()

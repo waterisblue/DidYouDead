@@ -4,13 +4,13 @@
       dot-color="info"
       >
         <div>
-          <div class="text-h6">填写信息</div>
+          <div class="text-h6">殡仪馆介绍及选择</div>
         </div>
       </v-timeline-item>
   
       <v-timeline-item>
         <div>
-          <div class="text-h6">殡仪馆介绍及选择</div>
+          <div class="text-h6">填写信息</div>
         </div>
       </v-timeline-item>
   
@@ -37,6 +37,6 @@
     </v-timeline>
   </template>
 
-<script>
+<script setup>
 
 </script>
