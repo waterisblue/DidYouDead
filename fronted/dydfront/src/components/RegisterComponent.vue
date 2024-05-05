@@ -29,7 +29,7 @@ function registerFun(){
     min-height: 60vh;
     border-radius: 1rem;
 
-    background-color: rgba(215, 231, 231, 0.384);
+    background-color: rgba(215, 231, 231, 0.8);
 
 
     padding: 1rem;

@@ -1,7 +1,7 @@
 <template>
     <v-container fluid class="outScreen">
         <div class="toolBar">
-            <v-btn @click="checkUrl('bubble')">&lt; 返回</v-btn>
+            <v-btn  icon class="backBtn" @click="checkUrl('bubble')">&lt; </v-btn>
         </div>
 
         <div class="timeLine">
@@ -41,6 +41,13 @@ function checkUrl(path){
     }
     .timeLine {
         flex: 50;
+    }
+    .backBtn {
+        font-size: 1.5rem;
+        color: rgb(133, 154, 173);
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 </style>

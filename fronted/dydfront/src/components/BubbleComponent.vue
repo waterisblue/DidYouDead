@@ -28,13 +28,13 @@
 </script>
 <style scoped>
     .bubble {
-            background-color: rgba(255, 255, 255, 0.7);
+            background-color: rgba(119, 107, 107, 0.388);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #b0b4b8;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #b9c6d3;
+            box-shadow: 0 1rem 1rem rgba(255, 255, 255, 0.1);
             cursor: pointer;
             animation: floatUp 4s ease-in-out infinite;
             animation-delay: calc(var(--i) * -0.5s);
@@ -42,7 +42,7 @@
 
             width: 20rem;
             height: 20rem;
-            font-size: 3rem;
+            font-size: 2rem;
             transition: all 2s;
     }
 

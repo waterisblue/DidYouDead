@@ -1,11 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import IndexView from '@/views/IndexView.vue'
-import ChartView from '@/views/ChartView.vue'
 import LoginView from '@/views/LoginView.vue'
 import BubbleView from '@/views/BubbleView.vue'
 import FireServiceView from '@/views/FireServiceView.vue'
 import TestamentSaveView from '@/views/TestamentSaveView.vue'
+import TechServiceView from '@/views/TechServiceView.vue'
 
 
 import LoginComponent from '@/components/LoginComponent.vue'
@@ -16,16 +15,6 @@ import MyTestamentComponent from '@/components/MyTestamentComponent.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      path: '/index',
-      name: 'index',
-      component: IndexView
-    },
-    {
-      path: '/chart',
-      name: 'chart',
-      component: ChartView
-    },
     {
       path: '/bubble',
       name: 'bubble',
@@ -67,6 +56,11 @@ const router = createRouter({
           component: TestamentDesignComponent
         }
       ]
+    },
+    {
+      path: '/tech',
+      name: 'tech',
+      component: TechServiceView
     }
   ]
 })

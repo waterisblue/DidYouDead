@@ -1,14 +1,16 @@
 <template>
+    <video class="videoBackground" playsinline="playsinline" autoplay="autoplay" muted="muted">
+        <source src="../assets/loginVideo.mp4" type="video/mp4">
+    </video>
     <v-container fluid align="center" class="fullScreen">
         <div class="loginScreen">
             <div class="title" align="right">
                 摆渡人 - 你的灵魂归宿
             </div>
-            <transition name="fullLogin" appear>
-                <RouterView />
-            </transition>
-            <div class="logoWindow">logo</div>
+            <RouterView />
+            <div class="logoWindow"></div>
         </div>
+
     </v-container>
 </template>
 
@@ -33,7 +35,7 @@ let name = 'LoginView'
 .fullLogin-enter-active,
 .fullLogin-appear-active,
 .fullLogin-leave-active {
-    transition: all 3s;
+    transition: all 13s;
 }
 
 .fullScreen {
@@ -41,7 +43,6 @@ let name = 'LoginView'
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-image: url('../assets/loginBackground.png');
 
     .loginScreen {
         width: 120vh;
@@ -58,8 +59,24 @@ let name = 'LoginView'
 
     .logoWindow {
         min-height: 20vh;
-        background-color: aliceblue;
         border-radius: 1rem;
+        background-image: url('../assets/1T83cq-LogoMakr.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+
     }
+}
+
+.videoBackground {
+    position: fixed;
+    /* 或者使用 absolute，视你的布局而定 */
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1000;
+    /* 确保视频在内容之下 */
+    background-size: cover;
+    float: left;
 }
 </style>
