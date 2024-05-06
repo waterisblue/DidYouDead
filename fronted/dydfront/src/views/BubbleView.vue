@@ -12,19 +12,41 @@
         </div>
         <div class="bubbleRow">
             <BubbleComponent innerText="智能技术服务" innerId="tech" />
-            <BubbleComponent innerText="客服中心" innerId="bubble4" />
+            <BubbleComponent v-if="!authority" innerText="客服中心" @click="checkSnackBar()" innerId="bubble" />
+            <BubbleComponent v-if="authority" innerText="管理中心" innerId="supervisor" />
         </div>
+        <v-snackbar v-model="snackbarHide" vertical>
+            <div class="text-subtitle-1 pb-2">欢迎访问DidYouDead客服服务！</div>
+
+            <p>疑问请拨打&nbsp;150-4092-7641&nbsp;咨询详情！</p>
+
+            <template v-slot:actions>
+                <v-btn color="indigo" variant="text" @click="snackbarHide = false">
+                    Close
+                </v-btn>
+            </template>
+        </v-snackbar>
     </v-container>
 </template>
 
 <script setup>
 import BubbleComponent from '@/components/BubbleComponent.vue'
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
 
 function checkUrl(path) {
     router.push(path)
+}
+
+// 是否管理员
+let authority = true
+
+let snackbarHide = ref(false)
+
+function checkSnackBar(){
+    snackbarHide.value = true
 }
 </script>
 
@@ -54,6 +76,7 @@ function checkUrl(path) {
 
         transition: all 1s;
     }
+
     .logoutBtn:hover {
         border: solid 0.1rem rgb(173, 189, 202);
         background-color: rgba(240, 248, 255, 0.121);

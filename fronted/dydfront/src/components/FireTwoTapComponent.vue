@@ -28,7 +28,7 @@
       <v-checkbox v-model="checkbox" label="Do you agree?" required></v-checkbox>
     </div>
     <div class="btnInputs">
-      <v-btn class="btnInput" color="error">上一步</v-btn>
+      <v-btn class="btnInput" color="error" @click="checkUrl('/fireservice')">上一步</v-btn>
       <v-btn class="btnInput" color="info">下一步</v-btn>
     </div>
 
@@ -38,10 +38,25 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 let firstName = ref('')
 let lastName = ref('')
 let checkbox = ref(false)
+
+const router = useRouter()
+
+function checkUrl(path){
+  router.push(path)
+}
+
+import { useTimeLineStore } from '@/stores/user';
+import { storeToRefs } from 'pinia';
+
+const {timeLineStore, setTimeLineInfo} = useTimeLineStore()
+
+const {timeLineInfo} = storeToRefs(timeLineStore)
+setTimeLineInfo('two')
 </script>
 
 <style lang="less" scoped>

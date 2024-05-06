@@ -11,6 +11,18 @@ export const useCounterStore = defineStore('counter', () => {
   return { count, doubleCount, increment }
 })
 
+export const useTimeLineStore = defineStore('timeline', () => {
+  const timeLineInfo = ref("one");
+
+  function setTimeLineInfo(path){
+      timeLineInfo.value = path
+    }
+
+
+  return {timeLineInfo, setTimeLineInfo}
+}
+)
+
 export const useUserStore = defineStore('user', () => {
   const token = ref("")
 
