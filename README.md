@@ -33,7 +33,7 @@ go run main.go
 ![首页](./readmeimgs/testselect.png) 
 ![首页](./readmeimgs/submit.png) 
 # 智能技术服务
-![首页](../readmeimgs/smartservice.png) 
+![首页](./readmeimgs/smartservice.png) 
 # 遗嘱存储服务
 ![首页](./readmeimgs/testament.png) 
 ![首页](./readmeimgs/testmentdesign.png) 
