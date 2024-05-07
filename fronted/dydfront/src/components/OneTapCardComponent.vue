@@ -1,6 +1,6 @@
 <template>
   <div class="outerScreen">
-    <v-card class="card" max-width="344" min-width="344">
+    <v-card class="card" max-width="280" min-width="280">
       <img height="200px" :src=tapImage cover class="tabimages" />
       <v-card-title>
         {{ props.tapName }}

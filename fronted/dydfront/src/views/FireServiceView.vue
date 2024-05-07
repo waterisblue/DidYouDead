@@ -1,7 +1,7 @@
 <template>
     <v-container fluid class="outScreen">
         <div class="toolBar">
-            <v-btn  icon class="backBtn" @click="checkUrl('bubble')">&lt; </v-btn>
+            <v-btn  icon class="backBtn" @click="checkUrl('/bubble')">&lt; </v-btn>
         </div>
 
         <div class="timeLine">

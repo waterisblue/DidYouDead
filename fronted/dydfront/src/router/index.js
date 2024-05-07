@@ -14,6 +14,10 @@ import TestamentDesignComponent from '@/components/TestamentDesignComponent.vue'
 import MyTestamentComponent from '@/components/MyTestamentComponent.vue'
 import FireOneTapComponent from '@/components/FireOneTapComponent.vue'
 import FireTwoTapComponent from '@/components/FireTwoTapComponent.vue'
+import FireModeComponent from '@/components/FireModeComponent.vue'
+import UrnStyleComponent from '@/components/UrnStyleComponent.vue'
+import CemeteryLocateComponent from '@/components/CemeteryLocateComponent.vue'
+import FireServiceSubmitComponent from '@/components/FireServiceSubmitComponent.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -52,6 +56,22 @@ const router = createRouter({
         {
           path: '/fireservice/writedetail',
           component: FireTwoTapComponent
+        },
+        {
+          path: '/fireservice/firemode',
+          component: FireModeComponent
+        },
+        {
+          path: '/fireservice/urnstyle',
+          component: UrnStyleComponent
+        },
+        {
+          path: '/fireservice/cemeterylocate',
+          component: CemeteryLocateComponent
+        },
+        {
+          path: '/fireservice/submit',
+          component: FireServiceSubmitComponent
         }
       ]
     },

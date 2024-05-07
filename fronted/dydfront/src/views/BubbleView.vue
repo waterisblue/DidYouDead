@@ -41,7 +41,7 @@ function checkUrl(path) {
 }
 
 // 是否管理员
-let authority = true
+let authority = false
 
 let snackbarHide = ref(false)
 

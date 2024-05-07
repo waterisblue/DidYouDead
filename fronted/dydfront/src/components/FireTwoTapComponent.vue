@@ -29,7 +29,7 @@
     </div>
     <div class="btnInputs">
       <v-btn class="btnInput" color="error" @click="checkUrl('/fireservice')">上一步</v-btn>
-      <v-btn class="btnInput" color="info">下一步</v-btn>
+      <v-btn class="btnInput" color="info" @click="checkUrl('/fireservice/firemode')">下一步</v-btn>
     </div>
 
   </v-container>
