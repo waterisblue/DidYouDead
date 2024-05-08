@@ -3,6 +3,11 @@ module dyd
 go 1.19
 
 require (
+	github.com/appleboy/gin-jwt v2.5.0+incompatible
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+)
+
+require (
 	filippo.io/edwards25519 v1.1.0 // indirect
 	github.com/bytedance/sonic v1.10.2 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20230717121745-296ad89f973d // indirect
@@ -30,5 +35,6 @@ require (
 	golang.org/x/sys v0.15.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	google.golang.org/protobuf v1.32.0 // indirect
+	gopkg.in/dgrijalva/jwt-go.v3 v3.2.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

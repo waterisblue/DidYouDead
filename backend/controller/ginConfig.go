@@ -25,6 +25,7 @@ func getEngine() (engin *gin.Engine) {
 
 // 开启服务器
 func StartGin() {
-	UserControllerRegister()
+	UserControllerRegister(JWTAuthMiddleware)
+	AuthControllerRegister(JWTAuthMiddleware)
 	engine.Run()
 }

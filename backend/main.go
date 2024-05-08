@@ -1,8 +1,9 @@
 package main
 
 import (
-	controller "dyd/controller"
+	"dyd/controller"
 	log "dyd/log"
+	"dyd/mysqlconn"
 )
 
 func main() {
@@ -12,6 +13,6 @@ func main() {
 	// 初始化gin
 	controller.InitGin()
 	controller.StartGin()
-	// DB, err := mysqlconn.Open()
-	return
+	// 初始化数据库连接
+	mysqlconn.Open()
 }
