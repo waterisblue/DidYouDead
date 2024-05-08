@@ -28,15 +28,15 @@ go run main.go
 
 ## 功能展示
 # 首页
-![首页](../DidYouDead/readmeimgs/index.png) 
+![首页](./readmeimgs/index.png) 
 # 殡仪馆及火化服务
-![首页](../DidYouDead/readmeimgs/testselect.png) 
-![首页](../DidYouDead/readmeimgs/submit.png) 
+![首页](./readmeimgs/testselect.png) 
+![首页](./readmeimgs/submit.png) 
 # 智能技术服务
-![首页](../DidYouDead/readmeimgs/smartservice.png) 
+![首页](./readmeimgs/smartservice.png) 
 # 遗嘱存储服务
-![首页](../DidYouDead/readmeimgs/testament.png) 
-![首页](../DidYouDead/readmeimgs/testmentdesign.png) 
+![首页](./readmeimgs/testament.png) 
+![首页](./readmeimgs/testmentdesign.png) 
 
 # TODO
 - 开发后端
