@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.6.8",
     "echarts": "^5.5.0",
     "less": "^4.2.0",
     "less-loader": "^12.2.0",
