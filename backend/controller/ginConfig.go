@@ -3,6 +3,8 @@ package controller
 import (
 	log "dyd/log"
 
+	"dyd/middleware"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -26,8 +28,8 @@ func getEngine() (engin *gin.Engine) {
 // 开启服务器
 func StartGin() {
 	// 配置跨域中间件
-	engine.Use(CorsMiddleware())
-	UserControllerRegister(JWTAuthMiddleware)
-	AuthControllerRegister(JWTAuthMiddleware)
-	engine.Run()
+	engine.Use(middleware.CorsMiddleware())
+	UserControllerRegister()
+	AuthControllerRegister()
+	engine.Run(":8888")
 }

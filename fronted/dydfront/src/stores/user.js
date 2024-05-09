@@ -22,13 +22,3 @@ export const useTimeLineStore = defineStore('timeline', () => {
   return {timeLineInfo, setTimeLineInfo}
 }
 )
-
-export const useUserStore = defineStore('user', () => {
-  const token = ref("")
-
-  function setToken(token){
-    this.token = token
-  }
-
-  return { token, setToken }
-})

@@ -2,19 +2,20 @@ package dao
 
 import (
 	"dyd/entity"
+	"dyd/log"
 	"dyd/mysqlconn"
 )
 
-func GetUserByAccount(username string) (exist bool, administrator string) {
+func GetUserByAccount(username string) (exist bool, userdetail entity.UserDetail) {
 	exist = false
-	db := mysqlconn.GetDBCon()
-	selectSQL := "SELECT account, administrator FROM SysUser WHERE account = ?"
-	rows, _ := db.Query(selectSQL, username)
-	defer rows.Close()
-
+	DB := mysqlconn.GetDBCon()
+	selectSQL := "SELECT account, password, administrator FROM SysUser WHERE account = ?"
+	log.Info.Println("DB:", DB)
+	rows, _ := DB.Query(selectSQL, username)
 	if rows.Next() {
+		defer rows.Close()
 		exist = true
-		rows.Scan(&administrator)
+		rows.Scan(&userdetail.Username, &userdetail.Password, &userdetail.Administrator)
 	}
 	return
 }

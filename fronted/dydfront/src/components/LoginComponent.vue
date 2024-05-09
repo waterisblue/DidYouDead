@@ -1,19 +1,27 @@
 <template>
     <transition name="fullLogin" appear>
         <div class="loginWindow">
-            <LoginInputComponent inputText="账号" />
-            <LoginInputComponent inputText="密码" />
+            <LoginInputComponent @send-input-data="(username) => user.username = username" inputText="账号" />
+            <LoginInputComponent @send-input-data="(password) => user.password = password" inputText="密码" />
             <div class="btns">
                 <div class="loginBtn">
-                    <LoginBtnComponent btnText="登录" btnColor="indigo-darken-3" @click="jump('/bubble')" />
+                    <LoginBtnComponent btnText="登录" btnColor="indigo-darken-3" @click="loginFunc" />
                 </div>
-                <div class="registerBtn" @click="jump('/register')">
+                <div class="registerBtn" @click="router.push('/register')">
                     <LoginBtnComponent btnText="注册" />
                 </div>
             </div>
         </div>
     </transition>
+    <v-snackbar :timeout="2000" color="error" v-model="snackbar">
+            {{ snackText }}
 
+            <template v-slot:actions>
+                <v-btn color="pink" variant="text" @click="snackbar = false">
+                    Close
+                </v-btn>
+            </template>
+        </v-snackbar>
 </template>
 
 <script setup>
@@ -21,11 +29,33 @@ import LoginInputComponent from '../components/LoginInputComponent.vue'
 import LoginBtnComponent from '../components/LoginBtnComponent.vue'
 
 import { useRouter } from 'vue-router';
+import axios from '../axios';
+import { ref } from 'vue';
 
 const router = useRouter()
 
-function jump(path) {
-    router.push(path)
+let snackbar = ref(false)
+let snackText = ref('')
+
+var user = {
+    username: '',
+    password: ''
+}
+function loginFunc(path) {
+    axios.post('/grantAuth', user).then(res => {
+        if(res.data.code != 200){
+            snackText.value = res.data.msg
+            snackbar.value = true
+            return
+        }
+        
+        localStorage.setItem('token', res.data.data.token)
+        router.push('/bubble')
+    }).catch(err => {
+        snackText.value = res.data.msg
+        snackbar.value = true
+        return
+    })
 }
 </script>
 

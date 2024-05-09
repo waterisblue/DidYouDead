@@ -4,6 +4,7 @@ import (
 	"dyd/dao"
 	"dyd/entity"
 	"dyd/log"
+	"dyd/middleware"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -11,7 +12,16 @@ import (
 
 func UserControllerRegister(handler ...func() func(*gin.Context)) {
 	engine := getEngine()
-	engine.GET("/registeruser", registerUser)
+
+	engine.Group("/loginbefore")
+	{
+		engine.POST("/registeruser", registerUser)
+	}
+
+	engine.Group("/loginafter", middleware.JWTAuthMiddleware())
+	{
+		engine.POST("/getuseradmin", middleware.JWTAuthMiddleware(), getUserAdministartor)
+	}
 }
 
 func registerUser(c *gin.Context) {
@@ -42,5 +52,25 @@ func registerUser(c *gin.Context) {
 		"code": 200,
 		"msg":  "注册成功！",
 		"data": user,
+	})
+}
+
+func getUserAdministartor(c *gin.Context) {
+	username, exist := c.Get("username")
+	if !exist {
+		c.JSON(http.StatusForbidden, gin.H{
+			"code": 403,
+			"msg":  "用户未登录！",
+		})
+		return
+	}
+	log.Info.Println(username, "用户开始获取权限，访问了", "getUserAdministartor")
+
+	_, userdetail := dao.GetUserByAccount(username.(string))
+
+	c.JSON(http.StatusOK, gin.H{
+		"code": 200,
+		"msg":  "权限获取成功！",
+		"data": gin.H{"admin": userdetail.Administrator},
 	})
 }

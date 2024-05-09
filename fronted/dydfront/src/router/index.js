@@ -42,7 +42,8 @@ const router = createRouter({
           name: "registerComponent",
           component: RegisterComponent
         }
-      ]
+      ],
+      meta: {requireAuth: true}
     },
     {
       path: '/fireservice',
@@ -101,6 +102,16 @@ const router = createRouter({
       component: SupervisorView
     },
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = localStorage.getItem('token') != null
+
+  if (!to.meta.requireAuth && !isAuthenticated) {
+    next('/')
+  } else {
+    next()
+  }
 })
 
 export default router

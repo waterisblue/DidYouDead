@@ -3,6 +3,9 @@
         <v-text-field
         hide-details="auto"
         :label="inputText"
+        @input="$emit('sendInputData', inputValue)"
+        v-model="inputValue"
+        :rules="thisRules"
         ></v-text-field>
     </div>
 </template>
@@ -12,10 +15,13 @@
 </style>
 
 <script setup>
+    import { ref } from 'vue';
     import { defineProps } from 'vue';
-    let name = 'LoginInputComponent'
 
+    let name = 'LoginInputComponent'
+    let inputValue = ref('')
     const props = defineProps({
-        inputText: String
+        inputText: String,
+        thisRules: Object
     })
 </script>

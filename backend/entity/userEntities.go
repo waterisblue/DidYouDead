@@ -12,3 +12,9 @@ type UserInfo struct {
 	Username string `json:"username"`
 	Password string `json:"password"`
 }
+
+type UserDetail struct {
+	Username      string
+	Password      string
+	Administrator bool
+}

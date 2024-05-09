@@ -3,7 +3,7 @@
         <source src="../assets/indexVideo.mp4" type="video/mp4">
     </video>
     <div class="toolBar">
-        <button @click="checkUrl('/')" class="logoutBtn">注销</button>
+        <button @click="logout()" class="logoutBtn">注销</button>
     </div>
     <v-container class="bubbleContainer" fluid>
         <div class="bubbleRow">
@@ -26,26 +26,38 @@
                 </v-btn>
             </template>
         </v-snackbar>
+        <SnackBarComponent :snackText="snackText" :snackbar="snackBar" snackColor="waring" />
     </v-container>
 </template>
 
 <script setup>
 import BubbleComponent from '@/components/BubbleComponent.vue'
+import SnackBarComponent from '@/components/SnackBarComponent.vue'
+
+import axios from '../axios';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
+// snackBar
+let snackText = ref('')
+let snackBar = ref(false)
 const router = useRouter()
 
-function checkUrl(path) {
-    router.push(path)
+function logout() {
+    localStorage.removeItem('token')
+    router.push('/')
 }
 
 // 是否管理员
-let authority = false
+let authority = ref(false)
+axios.post('/getuseradmin').then(res => {
+    authority.value = res.data.data.admin
+})
+
 
 let snackbarHide = ref(false)
 
-function checkSnackBar(){
+function checkSnackBar() {
     snackbarHide.value = true
 }
 </script>
