@@ -27,10 +27,15 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 const router = useRouter()
-let indexCheck = ref(true)
+let indexCheck = ref(false)
+
+const route = useRoute()
+if(route.path === '/testament'){
+    indexCheck.value = true
+}
 // 用于vue-router
 function checkUrl(path) {
     if(path != '/testament')

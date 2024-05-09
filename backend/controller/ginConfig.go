@@ -5,6 +5,7 @@ import (
 
 	"dyd/middleware"
 
+	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 )
 
@@ -29,6 +30,8 @@ func getEngine() (engin *gin.Engine) {
 func StartGin() {
 	// 配置跨域中间件
 	engine.Use(middleware.CorsMiddleware())
+	// 配置静态文件夹
+	engine.Use(static.Serve("/static/testament", static.LocalFile("../file/testament", true)))
 	UserControllerRegister()
 	AuthControllerRegister()
 	TestamentControllerRegister()

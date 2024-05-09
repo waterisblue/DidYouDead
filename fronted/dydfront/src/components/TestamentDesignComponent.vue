@@ -20,27 +20,31 @@
                 提交
             </v-btn>
         </div>
+        <SnackBarComponent :snackText="snackText" :snackbar="snackBar" snackColor="info" />
     </v-container>
 </template>
 
 <script setup>
 import axios from '../axios';
 import { ref } from 'vue'
+import SnackBarComponent from './SnackBarComponent.vue';
+import { useRouter } from 'vue-router';
 
 let testamentDetail = ref('')
 let testamentStyle = ref('')
 let testamentName = ref('')
 let files = ref(null)
 
-// function pushFiles(file){
-//     if(!file) return
+// snackBar
+let snackText = ref('')
+let snackBar = ref(false)
 
-//     files.value = file
-// }
+const router = useRouter()
+
 function submitTestament() {
-    console.log(testamentDetail.value)
-    console.log(testamentStyle.value)
-    let file = files.value[0]
+    let file = null
+    if (files.value)
+        file = files.value[0]
     const formData = new FormData()
     formData.append('testamentJustifyFile', file)
     formData.append('testamentDetail', testamentDetail.value)
@@ -51,7 +55,9 @@ function submitTestament() {
             'Content-Type': 'multipart/form-data'
         }
     }).then(res => {
-        console.log(res)
+        snackBar.value = true
+        snackText.value = "遗嘱保存成功！"
+        router.push('/testament/my')
     })
 }
 </script>
