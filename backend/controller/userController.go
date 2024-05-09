@@ -24,6 +24,7 @@ func UserControllerRegister(handler ...func() func(*gin.Context)) {
 	}
 }
 
+// 注册
 func registerUser(c *gin.Context) {
 	var user entity.UserInfo
 
@@ -55,6 +56,7 @@ func registerUser(c *gin.Context) {
 	})
 }
 
+// 获取用户权限
 func getUserAdministartor(c *gin.Context) {
 	username, exist := c.Get("username")
 	if !exist {

@@ -31,5 +31,6 @@ func StartGin() {
 	engine.Use(middleware.CorsMiddleware())
 	UserControllerRegister()
 	AuthControllerRegister()
+	TestamentControllerRegister()
 	engine.Run(":8888")
 }
