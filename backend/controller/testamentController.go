@@ -2,6 +2,7 @@ package controller
 
 import (
 	"dyd/dao"
+	"dyd/entity"
 	"dyd/log"
 	"dyd/middleware"
 	"fmt"
@@ -18,6 +19,7 @@ func TestamentControllerRegister() {
 	loginAfter := engine.Group("/loginafter").Use(middleware.JWTAuthMiddleware())
 	loginAfter.POST("/uploadtestment", uploadTestament)
 	loginAfter.GET("/gettestament", getTestament)
+	loginAfter.POST("/updatetestamentactive", updateTestamentActive)
 }
 
 // 上传遗嘱
@@ -71,5 +73,28 @@ func getTestament(c *gin.Context) {
 		"data": gin.H{
 			"testaments": testamentSlice,
 		},
+	})
+}
+
+func updateTestamentActive(c *gin.Context) {
+	username, _ := c.Get("username")
+	var testaments []entity.Testament
+	err := c.ShouldBind(&testaments)
+	if err != nil {
+		log.Warning.Println("参数校验失败", err)
+		c.JSON(http.StatusOK, gin.H{
+			"code": 304,
+			"msg":  "参数校验失败",
+		})
+		return
+	}
+
+	for _, v := range testaments {
+		log.Info.Println(username, "正在修改遗嘱", v.TestamentName)
+		go dao.UpdateTestamentActiveById(v.Id, v.IsActive)
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code": 200,
+		"msg":  "遗嘱状态修改成功",
 	})
 }

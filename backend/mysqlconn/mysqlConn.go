@@ -12,7 +12,7 @@ var (
 )
 
 func Open() (err error) {
-	DB, err = sql.Open("mysql", "root:zhang@tcp(121.36.99.228:3306)/DidYouDead")
+	DB, err = sql.Open("mysql", "root:zhang@tcp(121.36.99.228:3306)/DidYouDead?parseTime=true")
 	if err != nil {
 		log.Fatal(err)
 	}

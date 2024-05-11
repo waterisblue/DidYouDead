@@ -16,9 +16,19 @@ export const useTimeLineStore = defineStore('timeline', () => {
 
   function setTimeLineInfo(path){
       timeLineInfo.value = path
-    }
+  }
 
 
   return {timeLineInfo, setTimeLineInfo}
-}
-)
+})
+
+export const useFireServiceChoose = defineStore('fireservice', () => {
+  const useFireServiceChoose = ref({})
+  function getService(){
+    return useFireServiceChoose
+  }
+  function setService(service){
+    useFireServiceChoose.value = service
+  }
+  return {useFireServiceChoose, getService, setService}
+})
