@@ -13,7 +13,7 @@ var (
 	engine *gin.Engine
 )
 
-// 初始化gin
+// InitGin 初始化gin
 func InitGin() {
 	engine = gin.Default()
 }
@@ -26,7 +26,7 @@ func getEngine() (engin *gin.Engine) {
 	return engine
 }
 
-// 开启服务器
+// StartGin 开启服务器
 func StartGin() {
 	// 配置跨域中间件
 	engine.Use(middleware.CorsMiddleware())
@@ -35,5 +35,6 @@ func StartGin() {
 	UserControllerRegister()
 	AuthControllerRegister()
 	TestamentControllerRegister()
+	FireServiceControllerRegister()
 	engine.Run(":8888")
 }

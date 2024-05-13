@@ -2,22 +2,22 @@
     <v-container class="outer">
         <div class="detail">
             <div class="detailone">
-                <div>姓名: 张三</div>
-                <div>性别: 男</div>
-                <div>身份证号: 130xxxxxxxxxxx1234</div>
+                <div>姓名: {{ service.Name }}</div>
+                <div>性别: {{ service.Sex }}</div>
+                <div>身份证号: {{service.IdNum}}</div>
             </div>
             <div class="detailtwo">
-                <div>家庭住址: xx</div>
-                <div>手机号: 1402131xxxx</div>
-                <div>预约时间: 暂空</div>
+                <div>家庭住址: {{service.Locate}}</div>
+                <div>手机号: {{service.PhoneNum}}</div>
+                <div>预约时间: {{service.OrderTime}}</div>
             </div>
         </div>
         <v-divider></v-divider>
         <div class="selectDetail">
-            <div>选择殡仪馆：天堂之翼殡仪馆</div>
-            <div>火化方式：无感高温1000C</div>
-            <div>骨灰盒样式：蓝色迷笛</div>
-            <div>目的位置：xxxxx</div>
+            <div>选择殡仪馆：{{service.FuneralParlor}}</div>
+            <div>火化方式：{{service.FireService}}</div>
+            <div>骨灰盒样式：{{service.UrnStyle}}</div>
+            <div>墓地位置：{{service.Cemetery}}</div>
         </div>
         <v-divider></v-divider>
         <div class="submitBtns">
@@ -29,11 +29,13 @@
 
 <script setup>
 
-import { useTimeLineStore } from '@/stores/user';
+import { useTimeLineStore, useFireServiceChoose } from '@/stores/user';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 const {timeLineStore, setTimeLineInfo} = useTimeLineStore()
-
+const { getService, setService } = useFireServiceChoose()
+let service = getService()
+console.log(service)
 const {timeLineInfo} = storeToRefs(timeLineStore)
 setTimeLineInfo('six')
 

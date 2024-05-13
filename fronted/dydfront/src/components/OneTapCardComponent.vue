@@ -28,11 +28,20 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { storeToRefs } from 'pinia';
+
+import { useFireServiceChoose } from '@/stores/user';
+
+const {getService, setService} = useFireServiceChoose()
+
+let service = getService()
 
 let show = ref(false)
 
 const router = useRouter()
 function checkUrl(path) {
+  service.FuneralParlor = props.tapName
+  setService(service)
   router.push(path)
 }
 

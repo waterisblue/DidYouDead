@@ -4,23 +4,29 @@
             <v-btn  icon class="backBtn" @click="checkUrl('/bubble')">&lt; </v-btn>
         </div>
 
-        <div class="timeLine">
+        <div class="timeLine" v-if="!fireServiceExist">
             <FireServiceTimeLineComponent />
             <RouterView />
         </div>
+        <FireServiceShowComponent v-if="fireServiceExist" />
     </v-container>
 </template>
 
 <script setup>
 import FireServiceTimeLineComponent from '@/components/FireServiceTimeLineComponent.vue'
+import FireServiceShowComponent from '@/components/FireServiceShowComponent.vue'
 
-import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router'
+import { ref } from 'vue';
 
 const router = useRouter()
 
 function checkUrl(path){
     router.push(path)
 }
+
+let fireServiceExist = ref(false)
+
 </script>
 
 <style scoped lang="less">
