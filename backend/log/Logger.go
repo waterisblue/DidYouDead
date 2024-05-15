@@ -14,7 +14,7 @@ var (
 	Error   *log.Logger // 记录错误
 )
 
-func Init() {
+func init() {
 	file, err := os.OpenFile("error.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 
 	if err != nil {

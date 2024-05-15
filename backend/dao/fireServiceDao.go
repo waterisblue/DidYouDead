@@ -6,13 +6,13 @@ import (
 	"dyd/mysqlconn"
 )
 
-func InsertFireService(fireService entity.FireService) {
+func InsertFireService(fireService entity.FireService, UserName string) {
 	DB := mysqlconn.GetDBCon()
 	insertSQL := `INSERT INTO FireService 
     	(account, sex, idNum, locate, phoneNum, orderTime, funeralParlor, fireService, urnStyle, cemetery, name, age)
-		values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+		values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
 
-	_, err := DB.Exec(insertSQL, fireService.Username, fireService.Sex, fireService.IdNum, fireService.Locate, fireService.PhoneNum, fireService.OrderTime,
+	_, err := DB.Exec(insertSQL, UserName, fireService.Sex, fireService.IdNum, fireService.Locate, fireService.PhoneNum, fireService.OrderTime,
 		fireService.FuneralParlor, fireService.FireService, fireService.UrnStyle, fireService.Cemetery, fireService.Name, fireService.Age)
 	if err != nil {
 		log.Warning.Println("插入FireService时发生错误，插入结构：", fireService, err)

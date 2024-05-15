@@ -14,7 +14,7 @@ var (
 )
 
 // InitGin 初始化gin
-func InitGin() {
+func init() {
 	engine = gin.Default()
 }
 
@@ -36,5 +36,8 @@ func StartGin() {
 	AuthControllerRegister()
 	TestamentControllerRegister()
 	FireServiceControllerRegister()
-	engine.Run(":8888")
+	err := engine.Run(":8888")
+	if err != nil {
+		log.Error.Println("gin启动失败", err)
+	}
 }

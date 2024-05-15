@@ -22,27 +22,62 @@
         <v-divider></v-divider>
         <div class="submitBtns">
             <v-btn class="submitBtn" color="error" @click="checkUrl('/bubble')">取消</v-btn>
-            <v-btn class="submitBtn" color="info" @click="checkUrl('/bubble')">提交</v-btn>
+            <v-btn class="submitBtn" color="info" @click="submitFireService">提交</v-btn>
         </div>
+        <SnackBarComponent :snackText="snackText" :snackbar="snackBar" snackColor="waring" />
     </v-container>
 </template>
 
 <script setup>
 
 import { useTimeLineStore, useFireServiceChoose } from '@/stores/user';
+import axios from '../axios';
 import { storeToRefs } from 'pinia';
+import SnackBarComponent from '@/components/SnackBarComponent.vue'
 import { useRouter } from 'vue-router';
+import { ref } from 'vue';
+
 const {timeLineStore, setTimeLineInfo} = useTimeLineStore()
 const { getService, setService } = useFireServiceChoose()
+
+// snackBar
+let snackText = ref('')
+let snackBar = ref(false)
+
+
 let service = getService()
-console.log(service)
-const {timeLineInfo} = storeToRefs(timeLineStore)
 setTimeLineInfo('six')
 
 const router = useRouter()
 
 function checkUrl(path){
   router.push(path)
+}
+
+function submitFireService(){
+    service = getService()
+    console.log(service)
+    axios.post('/loginafter/uploadFireService', {
+        Age: parseInt(service.Age),
+        Cemetery: service.Cemetery,
+        FireService: service.FireService,
+        FuneralParlor: service.FuneralParlor,
+        IdNum: service.IdNum,
+        Locate: service.Locate,
+        Name: service.Name,
+        OrderTime: service.OrderTime,
+        PhoneNum: service.PhoneNum,
+        Sex: service.Sex,
+        UrnStyle: service.UrnStyle,
+        Name: service.Name
+    }).then(res => {
+        if(res.data.code == 200){
+            snackBar.value = true
+            snackText.value = "火化方式上传成功！"
+            setTimeout(() => {checkUrl('/bubble')}, 1500)
+        }
+        console.log(res)
+    })
 }
 </script>
 

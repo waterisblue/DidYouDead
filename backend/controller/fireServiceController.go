@@ -22,6 +22,7 @@ func FireServiceControllerRegister() {
 func uploadFireService(c *gin.Context) {
 	var fireService entity.FireService
 	err := c.ShouldBind(&fireService)
+	UserName, _ := c.Get("username")
 	if err != nil {
 		log.Warning.Println("uploadFireService 参数校验失败", err)
 		c.JSON(http.StatusOK, gin.H{
@@ -30,7 +31,7 @@ func uploadFireService(c *gin.Context) {
 		})
 		return
 	}
-	go dao.InsertFireService(fireService)
+	go dao.InsertFireService(fireService, UserName.(string))
 	c.JSON(http.StatusOK, gin.H{
 		"code": 304,
 		"msg":  "火化方案提交成功！",

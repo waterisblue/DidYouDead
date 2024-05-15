@@ -8,15 +8,18 @@
         <v-text-field v-model="age" label="年龄"></v-text-field>
       </div>
       <div class="nameInputs">
-        <v-select v-model="sex" :items="['男', '女']" :rules="[v => !!v || '必须输入性别']" label="性别"
-          required></v-select>
+        <v-select v-model="sex" :items="['男', '女']" :rules="[v => !!v || '必须输入性别']" label="性别" required></v-select>
       </div>
       <div class="nameInputs">
-        <v-text-field v-model="ordertime" label="预约时间"></v-text-field>
+        <v-menu v-model="menuVisible" :close-on-content-click="false" transition="scale-transition" offset-y
+          max-width="290px" min-width="290px">
+          <template v-slot:activator="{ props }">
+            <v-text-field v-model="orderTime" label="预约时间" prepend-icon="mdi-calendar" readonly
+              v-bind="props"></v-text-field>
+          </template>
+          <v-date-picker v-model="selectTime" @update:modelValue="checkTime"></v-date-picker>
+        </v-menu>
       </div>
-      <!-- <div class="nameInputs">
-        <v-date-picker v-model="ordertime"></v-date-picker>
-      </div> -->
     </div>
     <div class="nameInputGroup">
       <div class="nameInputs2">
@@ -49,21 +52,20 @@ import { useRouter } from 'vue-router';
 
 let firstName = ref('')
 let age = ref('')
-let orderTime = ref(null)
 let idcard = ref('')
 let phone = ref('')
 let locate = ref('')
 let sex = ref('')
-let ordertime = ref('')
+let orderTime = ref('')
 let checkbox = ref(false)
+let menuVisible = ref(false)
+let selectTime = ref(new Date())
 
 const router = useRouter()
 
 import { useTimeLineStore, useFireServiceChoose } from '@/stores/user';
-import { storeToRefs } from 'pinia';
-const { timeLineStore, setTimeLineInfo } = useTimeLineStore()
+const { setTimeLineInfo } = useTimeLineStore()
 
-const { timeLineInfo } = storeToRefs(timeLineStore)
 const { getService, setService } = useFireServiceChoose()
 
 let service = getService()
@@ -78,9 +80,16 @@ function checkUrl(path) {
   service.IdNum = idcard.value
   service.Locate = locate.value
   service.PhoneNum = phone.value
-  service.OrderTime = ordertime.value
+  service.OrderTime = selectTime.value
   setService(service)
   router.push(path)
+}
+
+function checkTime(){
+  menuVisible.value = false
+  let dateFormat = selectTime.value
+  orderTime.value = `${dateFormat.getFullYear()}-${dateFormat.getMonth() + 1}-${dateFormat.getDate()}`
+  
 }
 </script>
 
@@ -101,11 +110,11 @@ function checkUrl(path) {
     }
 
     .nameInputs2 {
-      width: 78vh;
+      width: 83vh;
     }
 
     .houseInputs {
-      width: 170vh;
+      width: 177vh;
     }
   }
 
