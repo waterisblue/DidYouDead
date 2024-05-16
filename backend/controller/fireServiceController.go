@@ -33,7 +33,7 @@ func uploadFireService(c *gin.Context) {
 	}
 	go dao.InsertFireService(fireService, UserName.(string))
 	c.JSON(http.StatusOK, gin.H{
-		"code": 304,
+		"code": 200,
 		"msg":  "火化方案提交成功！",
 	})
 	return

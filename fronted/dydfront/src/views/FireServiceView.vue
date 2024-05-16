@@ -8,7 +8,7 @@
             <FireServiceTimeLineComponent />
             <RouterView />
         </div>
-        <FireServiceShowComponent v-if="fireServiceExist" />
+        <FireServiceShowComponent v-if="fireServiceExist" :fire-service="fireService" @change-plan="(exist) => {fireServiceExist = exist}" />
     </v-container>
 </template>
 
@@ -18,15 +18,43 @@ import FireServiceShowComponent from '@/components/FireServiceShowComponent.vue'
 
 import { useRouter } from 'vue-router'
 import { ref } from 'vue';
-
+import axios from '../axios';
+import { onMounted } from 'vue';
 const router = useRouter()
+
+let fireServiceExist = ref(false)
+
+
+onMounted(() => {
+    // 监听路由变化
+  const updateQueryParamX = () => {
+    let exist = router.currentRoute.value.query.exist
+
+    if (exist != null) {
+        fireServiceExist.value = exist
+    }
+  };
+
+  // 初始化时读取一次
+  updateQueryParamX();
+
+  // 监听路由变化
+  router.afterEach(updateQueryParamX);
+})
+
+let fireService = ref(null)
+axios.post('/loginafter/getFireServiceByUserName').then(res => {
+    if (res.data.code == 200) {
+        fireService.value = res.data.data.fireService
+        fireServiceExist.value = true
+    }
+})
+
+
 
 function checkUrl(path){
     router.push(path)
 }
-
-let fireServiceExist = ref(false)
-
 </script>
 
 <style scoped lang="less">

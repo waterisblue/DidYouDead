@@ -32,17 +32,15 @@
 
 import { useTimeLineStore, useFireServiceChoose } from '@/stores/user';
 import axios from '../axios';
-import { storeToRefs } from 'pinia';
 import SnackBarComponent from '@/components/SnackBarComponent.vue'
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 
-const {timeLineStore, setTimeLineInfo} = useTimeLineStore()
-const { getService, setService } = useFireServiceChoose()
+const { setTimeLineInfo} = useTimeLineStore()
+const { getService } = useFireServiceChoose()
 
-// snackBar
-let snackText = ref('')
-let snackBar = ref(false)
+
+
 
 
 let service = getService()
@@ -53,10 +51,13 @@ const router = useRouter()
 function checkUrl(path){
   router.push(path)
 }
+// snackBar
+let snackText = ref('')
+let snackBar = ref(false)
 
 function submitFireService(){
     service = getService()
-    console.log(service)
+    let thatSnackBar = snackBar
     axios.post('/loginafter/uploadFireService', {
         Age: parseInt(service.Age),
         Cemetery: service.Cemetery,
@@ -72,11 +73,10 @@ function submitFireService(){
         Name: service.Name
     }).then(res => {
         if(res.data.code == 200){
-            snackBar.value = true
+            thatSnackBar.value = true
             snackText.value = "火化方式上传成功！"
-            setTimeout(() => {checkUrl('/bubble')}, 1500)
+            setTimeout(() => {checkUrl('/fireService?exist=true')}, 1500)
         }
-        console.log(res)
     })
 }
 </script>
