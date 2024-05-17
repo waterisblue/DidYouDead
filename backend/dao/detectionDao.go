@@ -27,3 +27,12 @@ func GetDetectionByDate() []entity.Detection {
 	return detecitons
 
 }
+
+func InsertDetection(account string, heartrate int) {
+	DB := mysqlconn.GetDBCon()
+	InsertSQL := `INSERT INTO DetectionLog(account, heartrate) VALUES (?, ?)`
+	_, err := DB.Exec(InsertSQL, account, heartrate)
+	if err != nil {
+		log.Warning.Println(err)
+	}
+}

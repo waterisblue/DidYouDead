@@ -15,8 +15,8 @@ func DetectionControllerRegister(handler ...func() func(*gin.Context)) {
 
 func getDetectionData(c *gin.Context) {
 	username, _ := c.Get("username")
-	_, userdetail := dao.GetUserByAccount(username.(string))
-	if !userdetail.Administrator {
+	_, userDetail := dao.GetUserByAccount(username.(string))
+	if !userDetail.Administrator {
 		c.JSON(http.StatusForbidden, gin.H{
 			"code": http.StatusForbidden,
 			"msg":  "您的账号无权限获取此数据",
