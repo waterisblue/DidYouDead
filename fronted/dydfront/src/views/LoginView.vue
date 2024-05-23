@@ -9,6 +9,7 @@
             </div>
             <RouterView />
             <div class="logoWindow"></div>
+            <h2>111111111111111111111111111111111111</h2>
         </div>
 
     </v-container>
@@ -52,7 +53,7 @@ let name = 'LoginView'
     }
 
     .title {
-        font-size: 3rem;
+        font-size: 2rem;
         color: white;
         font-weight: 900;
     }

@@ -2,7 +2,7 @@
   <v-container fluid class="outer">
     <div class="nameInputGroup">
       <div class="nameInputs">
-        <v-text-field v-model="firstName" label="姓名"></v-text-field>
+        <v-text-field v-model="firstName" label="姓名" :rules="namerules"></v-text-field>
       </div>
       <div class="nameInputs">
         <v-text-field v-model="age" label="年龄"></v-text-field>
@@ -23,10 +23,10 @@
     </div>
     <div class="nameInputGroup">
       <div class="nameInputs2">
-        <v-text-field v-model="idcard" label="身份证号"></v-text-field>
+        <v-text-field v-model="idcard" label="身份证号" :rules="identynumb"></v-text-field>
       </div>
       <div class="nameInputs2">
-        <v-text-field v-model="phone" label="手机号"></v-text-field>
+        <v-text-field v-model="phone" label="手机号" :rules="phonenumb"></v-text-field>
       </div>
     </div>
     <div class="nameInputGroup">
@@ -49,7 +49,30 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+let namerules = ref( [
+        value => {
+          if (value.length >10) return "Error!!!"
+          if (value) return true
 
+          return '请输入正确姓名！！'
+        },
+      ])
+      let identynumb = ref( [
+        value => {
+          if (value.length !=18) return "请输入正确的身份证号码！"
+          if (value) return true
+
+      
+        },
+      ])
+      let phonenumb = ref( [
+        value => {
+          if (value.length !=11) return "请输入正确的电话号码！"
+          if (value) return true
+
+          return 'You must enter a first name.'
+        },
+      ])
 let firstName = ref('')
 let age = ref('')
 let idcard = ref('')

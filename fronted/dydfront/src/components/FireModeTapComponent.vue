@@ -1,6 +1,6 @@
 <template>
   <div class="outerScreen">
-    <v-card class="card" max-width="280" min-width="280">
+    <v-card class="card" max-width="260" min-width="200">
       <img height="200px" :src=tapImage cover class="tabimages" />
       <v-card-title>
         {{ props.tapName }}
@@ -11,7 +11,7 @@
       <v-card-actions>
         <v-btn color="orange-lighten-2" text="选择" @click="checkUrl('/fireservice/urnstyle')"></v-btn>
         <v-spacer></v-spacer>
-        <v-btn :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'" @click="show = !show"></v-btn>
+        <v-btn :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'" @click="show = !show"></v-btn> 
       </v-card-actions>
       <v-expand-transition>
         <div v-show="show">
@@ -69,6 +69,9 @@ const props = defineProps({
 }
 
 .outerScreen:hover {
-  flex: 1.5;
+  /* flex: 1.5;  */
+  opacity: 0.9; 
+  transition: 1s; 
+  transform: scale(1.1); 
 }
 </style>

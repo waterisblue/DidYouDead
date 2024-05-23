@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid class="outScreen">
+    <v-container fluid class="outScreen" >
         <div class="toolBar">
             <v-btn  icon class="backBtn" @click="checkUrl('/bubble')">&lt; </v-btn>
         </div>
@@ -59,10 +59,11 @@ function checkUrl(path){
 
 <style scoped lang="less">
 .outScreen {
-    background-color: aliceblue;
-    min-height: 100vh;
+     background-color: aliceblue;
+    background-image: url();
     display: flex;
     flex-direction: column;
+    
     .toolBar {
         flex: 1;
         display: flex;
