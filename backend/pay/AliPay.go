@@ -1,6 +1,8 @@
 package pay
 
 import (
+	"dyd/dao"
+	"dyd/entity"
 	"dyd/log"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -46,18 +48,24 @@ func init() {
 	return
 }
 
-func Pay() *url.URL {
+func Pay(amount string, subject string, typeId int, id int) *url.URL {
 	var tradeNo = fmt.Sprintf("%d", xid.Next())
 
 	var p = alipay.TradePagePay{}
 	p.NotifyURL = kServerDomain + "/alipay/notify"
 	p.ReturnURL = kServerDomain + "/alipay/callback"
-	p.Subject = "支付测试:" + tradeNo
+	p.Subject = fmt.Sprintf("%s:%s", subject, tradeNo)
 	p.OutTradeNo = tradeNo
-	p.TotalAmount = "268.00"
+	p.TotalAmount = amount
 	p.ProductCode = "FAST_INSTANT_TRADE_PAY"
 
 	urlRes, _ := Client.TradePagePay(p)
+	orderEntity := entity.OrderEntity{
+		OrderNum:  tradeNo,
+		OrderType: typeId,
+		LinkId:    id,
+	}
+	go dao.InsertPayDao(orderEntity)
 	return urlRes
 	//http.Redirect(writer, request, url.String(), http.StatusTemporaryRedirect)
 }
@@ -98,7 +106,7 @@ func Callback(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": fmt.Sprintf("验证订单 %s 信息发生错误: %s-%s", outTradeNo, rsp.Msg, rsp.SubMsg)})
 		return
 	}
-
+	go dao.UpdatePayDao(true, outTradeNo)
 	c.JSON(http.StatusOK, gin.H{"message": fmt.Sprintf("订单 %s 支付成功", outTradeNo)})
 }
 func Notify(c *gin.Context) {
@@ -135,7 +143,7 @@ func Notify(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": fmt.Sprintf("异步通知验证订单 %s 信息发生错误: %s-%s", notification.OutTradeNo, rsp.Msg, rsp.SubMsg)})
 		return
 	}
-
+	go dao.UpdatePayDao(true, notification.OutTradeNo)
 	log.Warning.Printf("订单 %s 支付成功", notification.OutTradeNo)
 
 	Client.ACKNotification(c.Writer)

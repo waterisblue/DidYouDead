@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// 验证
+// JWTAuthMiddleware 验证
 func JWTAuthMiddleware() func(c *gin.Context) {
 	// token放在Authorization中，使用Bearer开头
 	return func(c *gin.Context) {
@@ -48,7 +48,7 @@ func JWTAuthMiddleware() func(c *gin.Context) {
 	}
 }
 
-// 解决跨域
+// CorsMiddleware 解决跨域
 func CorsMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		method := c.Request.Method

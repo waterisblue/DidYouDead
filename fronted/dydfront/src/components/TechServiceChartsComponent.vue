@@ -15,16 +15,18 @@
 </template>
 
 <script setup>
-import axios from '../axios';
 import * as echarts from 'echarts'
 import { onMounted } from 'vue';
 import { ref } from 'vue';
+import axios from '../axios'
 
 const lineChartDom = ref(null)
 const pieChartDom = ref(null)
 
 function toPay() {
-    window.open('http://localhost:8888/pay', '_blank');
+    let backUrl = import.meta.env.VITE_BACK_URL
+
+    window.open(`${backUrl}/pay?amount=298.00&subject="智能设备产品支付"`, '_blank');
 }
 onMounted(() => {
     let lineChartSet = echarts.init(lineChartDom.value)

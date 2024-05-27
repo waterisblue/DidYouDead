@@ -28,18 +28,31 @@ func InsertFireService(fireService entity.FireService, UserName string) {
 	return
 }
 
-func GetFireServiceByUserName(username string) (exists bool, fireService entity.FireService) {
+func GetFireServiceByUserName(username string) (exists bool, fireService entity.FireServiceJoinOrderData) {
 	exists = false
 	DB := mysqlconn.GetDBCon()
-	selectSQL := `SELECT sex, idnum, locate, phonenum, ordertime, funeralparlor, fireservice, urnstyle, cemetery, name, age FROM FireService WHERE account = ? and isActive = 1`
+	selectSQL := `SELECT id, sex, idnum, locate, phonenum, ordertime, funeralparlor, fireservice, urnstyle, cemetery, name, age FROM FireService WHERE account = ? and isActive = 1`
+	selectPaySQL := `SELECT isPay from OrderData where LinkId = ? and orderType = 0`
 	rows, _ := DB.Query(selectSQL, username)
 	if rows.Next() {
 		exists = true
-		err := rows.Scan(&fireService.Sex, &fireService.IdNum, &fireService.Locate, &fireService.PhoneNum, &fireService.OrderTime,
+		err := rows.Scan(&fireService.Id, &fireService.Sex, &fireService.IdNum, &fireService.Locate, &fireService.PhoneNum, &fireService.OrderTime,
 			&fireService.FuneralParlor, &fireService.FireService, &fireService.UrnStyle, &fireService.Cemetery, &fireService.Name, &fireService.Age)
 		if err != nil {
 			log.Warning.Println("从查询中获取数据失败，", fireService, err)
 			return
+		}
+		query, err := DB.Query(selectPaySQL, fireService.Id)
+		if err != nil {
+			log.Warning.Println(err)
+		}
+		if query.Next() {
+			err := query.Scan(&fireService.IsPay)
+			if err != nil {
+				log.Warning.Println(err)
+			}
+		} else {
+			fireService.IsPay = false
 		}
 	}
 	return

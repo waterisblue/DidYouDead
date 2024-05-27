@@ -10,7 +10,7 @@
                     </div>
                     <div class="rows">
                         <div>身份证号：{{ fireService.IdNum }}</div>
-                        <div>手机号：{{ fireService.Phone }}</div>
+                        <div>手机号：{{ fireService.PhoneNum }}</div>
                         <div>火化日期：{{ fireService.OrderTime }}</div>
                     </div>
                     <div class="rows">
@@ -36,8 +36,12 @@
                     </v-timeline-item>
                 </v-timeline>
             </v-card-text>
-            <template v-slot:actions>
+            <template v-slot:actions v-if="!fireService.IsPay">
                 <v-btn text="修改方案" @click="$emit('changePlan', false)"></v-btn>
+                <v-btn text="支付并保存" @click="$emit('payService', fireService.id)"></v-btn>
+            </template>
+            <template v-slot:actions v-if="fireService.IsPay">
+                <v-btn text="已支付"></v-btn>
             </template>
         </v-card>
     </v-container>
@@ -67,10 +71,10 @@
 import { defineProps } from 'vue';
 
 
-function changePlan(){
-    
-}
 const props = defineProps({
     fireService: Object
-    })
+})
+if (!props.fireService.IsPay) {
+    props.fireService.IsPay = false
+}
 </script>

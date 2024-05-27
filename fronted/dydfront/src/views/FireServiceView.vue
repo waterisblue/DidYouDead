@@ -8,7 +8,7 @@
             <FireServiceTimeLineComponent />
             <RouterView />
         </div>
-        <FireServiceShowComponent v-if="fireServiceExist" :fire-service="fireService" @change-plan="(exist) => {fireServiceExist = exist}" />
+        <FireServiceShowComponent v-if="fireServiceExist" :fire-service="fireService" @change-plan="(exist) => {fireServiceExist = exist}" @pay-service="payService" />
     </v-container>
 </template>
 
@@ -50,7 +50,10 @@ axios.post('/loginafter/getFireServiceByUserName').then(res => {
     }
 })
 
-
+function payService(id){
+    let backUrl = import.meta.env.VITE_BACK_URL
+    window.open(`${backUrl}/pay?amount=298.00&subject="智能设备产品支付"&id=${id}&typeId=0`, '_blank');
+}
 
 function checkUrl(path){
     router.push(path)

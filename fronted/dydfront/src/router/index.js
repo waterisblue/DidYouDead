@@ -8,6 +8,7 @@ import TechServiceView from '@/views/TechServiceView.vue'
 import SupervisorView from '@/views/SupervisorView.vue'
 
 
+
 import LoginComponent from '@/components/LoginComponent.vue'
 import RegisterComponent from '@/components/RegisterComponent.vue'
 import TestamentDesignComponent from '@/components/TestamentDesignComponent.vue'
