@@ -9,12 +9,13 @@
                 现在就选择我们的智能手表，让健康与时尚同行，成为你生活中不可或缺的一部分。<br/>
                 如果你对我们的产品有任何疑问或想了解更多信息，请随时联系我们。感谢您的关注与支持！
             </div>
-            <v-btn color="error">现在购买！</v-btn>
+            <v-btn color="error" @click="toPay()">现在购买！</v-btn>
         </div>
     </div>
 </template>
 
 <script setup>
+import axios from '../axios';
 import * as echarts from 'echarts'
 import { onMounted } from 'vue';
 import { ref } from 'vue';
@@ -22,6 +23,9 @@ import { ref } from 'vue';
 const lineChartDom = ref(null)
 const pieChartDom = ref(null)
 
+function toPay() {
+    window.open('http://localhost:8888/pay', '_blank');
+}
 onMounted(() => {
     let lineChartSet = echarts.init(lineChartDom.value)
     let pieChartSet = echarts.init(pieChartDom.value)

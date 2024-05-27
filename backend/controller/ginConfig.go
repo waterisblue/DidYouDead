@@ -37,6 +37,7 @@ func StartGin() {
 	TestamentControllerRegister()
 	FireServiceControllerRegister()
 	DetectionControllerRegister()
+	PayControllerRegister()
 	err := engine.Run(":8888")
 	if err != nil {
 		log.Error.Println("gin启动失败", err)

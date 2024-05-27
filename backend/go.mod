@@ -9,6 +9,11 @@ require (
 	github.com/cloudwego/base64x v0.1.4 // indirect
 	github.com/cloudwego/iasm v0.2.0 // indirect
 	github.com/kr/text v0.2.0 // indirect
+	github.com/smartwalle/alipay/v3 v3.2.21 // indirect
+	github.com/smartwalle/ncrypto v1.0.4 // indirect
+	github.com/smartwalle/ngx v1.0.9 // indirect
+	github.com/smartwalle/nsign v1.0.9 // indirect
+	github.com/smartwalle/xid v1.0.7 // indirect
 )
 
 require (
