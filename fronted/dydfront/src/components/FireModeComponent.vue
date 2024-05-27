@@ -1,10 +1,10 @@
 <template>
     <div class="outer">
-        <FireModeTapComponent tap-image="/static/onetap.jpg" tap-name="永恒之翼殡仪馆" tap-sub-title="1288 永恒路，和谐市，安宁区，邮编 310015" tap-detail="永恒之翼殡仪馆提供一个庄严而宁静的环境，让您在此向逝去的亲人致以最深的敬意。我们的专业团队将确保每个纪念仪式都是独特而尊重的，帮助您以最贴心的方式来缅怀和告别。" />
-        <FireModeTapComponent tap-image="/static/twotap.jpg" tap-name="安祥殿堂" tap-sub-title="772 宁静大道，慰藉镇，温馨岭，邮编 210045" tap-detail="安祥殿堂以其温馨的服务和典雅的环境著称，旨在为您提供一个平和的告别空间。我们的个性化服务确保每位逝者都能得到他们应得的尊重和纪念，让家属在这个艰难时刻感受到安慰和支持。"/>
-        <FireModeTapComponent tap-image="/static/threetap.jpg" tap-name="星河仙途" tap-sub-title="555 星辰街，天际村，星光县，邮编 420123" tap-detail="星河仙途殡仪馆以宁静的天体主题为背景，为您的亲人提供一个独特的最后旅程。我们相信，每个生命都如同繁星般璀璨，应当以最尊贵的方式送别。我们的服务旨在帮助家庭以一种庄重而又个性化的方式纪念他们的爱人。"/>
-        <FireModeTapComponent tap-image="/static/fourtap.jpg" tap-name="珍爱纪念馆" tap-sub-title="939 记忆巷，回忆市，珍爱区，邮编 520234" tap-detail="珍爱纪念馆以其专注于细节和对家庭的深切同情而自豪。我们提供全方位的殡葬服务，并致力于创造一个温馨的环境，让您在此缅怀逝者，并与家人和朋友共同分享生命中的美好回忆。"/>
-        <FireModeTapComponent tap-image="/static/fivetap.jpg" tap-name="诗意长眠园" tap-sub-title="88 诗意路，风景区，自然市，邮编 330789" tap-detail=" 诗意长眠园位于风景如画的郊外，提供一个与自然和谐共存的安息地。我们的理念是将每一次告别变成对生命的庆祝，通过我们美丽的花园和宁静的湖泊，为逝者创造一个永恒的休憩之所。"/>
+        <FireModeTapComponent tap-image="/static/jian1.jpg" tap-name="拣灰式火化机" tap-sub-title="价格:4999元(燃油)/4299元(燃气)" tap-detail="拣灰火化机分为燃油和燃气两款。燃油机功率大，时间短，但成本较高；燃气机成本低，耗能少，更环保但用时长。用户可根据尸体的具体大小进行灵活选择，调整燃烧大小和时间，节约成本。但需要专门的装置和操作流程来进行拣灰，增加了操作的复杂性和等待时间；收集的灰渣会有大块残留需要进一步处理或处置，进一步加大火化时长。" />
+        <FireModeTapComponent tap-image="/static/lu2.jpg" tap-name="平板式火化机" tap-sub-title="价格：6999元" tap-detail="采用高科技燃烧技术和多重净化技术，燃烧效率高、能源利用率高，同时烟气和废气都通过净化器进行净化，达到国家的排放标准。但要注意，遗体背部与支承平板炕面接触，形成燃烧死角，焚化效率略低。总体用时小于拣灰火化机，是大众首选方式。"/>
+        <FireModeTapComponent tap-image="/static/lu.jpg" tap-name="辊道式电热火化炉" tap-sub-title="价格：8999元" tap-detail="优点：采用架空燃烧的方式，增大了遗体燃烧时的表面积，火焰可围绕整个遗体进行燃烧，燃烧死角很小，因而遗体焚化速度快，节约燃料，利于连续焚化，且焚化效果好，噪音小。缺点：可能需要较高的电力供应，且设备成本和维护成本可能较高。"/>
+        <FireModeTapComponent tap-image="/static/jian2.jpg" tap-name="生物质火化炉" tap-sub-title="10999元" tap-detail="生物质火化炉能够有效地将生物质燃料转化为热能或电能，提高了能源利用效率，降低了能源消耗成本。生物质燃料来源广泛，且价格相对较为稳定，能够适应不同的生物质燃料类型，具有较高的燃料适应性。但也存在热值较低、技术要求高，普及率低等缺点。"/>
+        <FireModeTapComponent tap-image="/static/R5.jpg" tap-name="宠物专用炉" tap-sub-title="599元" tap-detail=" 单独为一只宠物进行火化，结束后您可以得到宠物的全部骨灰。还提供宠物墓地服务，供您选择。"/>
     </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="outerScreen">
-    <v-card class="card" max-width="280" min-width="280">
+    <v-card class="card" max-width="200" min-width="250">
       <img height="200px" :src=tapImage cover class="tabimages" />
       <v-card-title>
         {{ props.tapName }}
@@ -71,6 +71,9 @@ const props = defineProps({
 }
 
 .outerScreen:hover {
-  flex: 1.5;
+  flex: 1.5; 
+  opacity: 0.9; 
+  transition: 1s; 
+  transform: scale(1.1); 
 }
 </style>
