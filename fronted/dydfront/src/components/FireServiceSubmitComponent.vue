@@ -29,7 +29,6 @@
 </template>
 
 <script setup>
-
 import { useTimeLineStore, useFireServiceChoose } from '@/stores/user';
 import axios from '../axios';
 import SnackBarComponent from '@/components/SnackBarComponent.vue'
@@ -38,7 +37,6 @@ import { ref } from 'vue';
 
 const { setTimeLineInfo} = useTimeLineStore()
 const { getService } = useFireServiceChoose()
-
 
 
 
@@ -75,7 +73,8 @@ function submitFireService(){
         if(res.data.code == 200){
             thatSnackBar.value = true
             snackText.value = "火化方式上传成功！"
-            setTimeout(() => {checkUrl('/fireService?exist=true')}, 1500)
+            checkUrl('/fireService?exist=true')
+            // setTimeout(() => {}, 1500)
         }
     })
 }
