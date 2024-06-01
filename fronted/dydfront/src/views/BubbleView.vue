@@ -13,7 +13,7 @@
         <div class="bubbleRow">
             <BubbleComponent innerText="智能技术服务" innerId="tech" />
             <BubbleComponent v-if="!authority" innerText="客服中心" @click="checkSnackBar()" innerId="bubble" />
-            <BubbleComponent v-if="authority" innerText="管理中心" innerId="supervisor" />
+            <BubbleComponent v-if="authority" innerText="管理中心" innerId="super" />
         </div>
         <v-snackbar v-model="snackbarHide" vertical>
             <div class="text-subtitle-1 pb-2">欢迎访问DidYouDead客服服务！</div>

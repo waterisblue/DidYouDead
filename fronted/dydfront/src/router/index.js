@@ -19,6 +19,9 @@ import FireModeComponent from '@/components/FireModeComponent.vue'
 import UrnStyleComponent from '@/components/UrnStyleComponent.vue'
 import CemeteryLocateComponent from '@/components/CemeteryLocateComponent.vue'
 import FireServiceSubmitComponent from '@/components/FireServiceSubmitComponent.vue'
+import RateScanComponent from '@/components/RateScanComponent.vue'
+import UserComponent from '@/components/UserComponent.vue'
+import SupplyComponent from '@/components/SupplyComponent.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -98,9 +101,23 @@ const router = createRouter({
       component: TechServiceView
     },
     {
-      path: '/supervisor',
+      path: '/super',
       name: 'supervisor',
-      component: SupervisorView
+      component: SupervisorView,
+      children: [
+        {
+          path: '/super/ratescan',
+          component: RateScanComponent
+        },
+        {
+          path: '/super',
+          component: UserComponent
+        },
+        {
+          path: '/super/supply',
+          component: SupplyComponent
+        }
+      ]
     },
   ]
 })
