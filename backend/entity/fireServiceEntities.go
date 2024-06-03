@@ -16,6 +16,7 @@ type FireService struct {
 	FireService   string     `json:"FireService,omitempty"`
 	UrnStyle      string     `json:"UrnStyle,omitempty"`
 	Cemetery      string     `json:"Cemetery,omitempty"`
+	Amount        int        `json:"Amount,omitempty"`
 }
 
 type FireServiceJoinOrderData struct {
@@ -32,4 +33,12 @@ type FireServiceJoinOrderData struct {
 	UrnStyle      string     `json:"UrnStyle,omitempty"`
 	Cemetery      string     `json:"Cemetery,omitempty"`
 	IsPay         bool       `json:"IsPay,omitempty"`
+	Amount        int        `json:"Amount,omitempty"`
+}
+
+type AmountCalEntity struct {
+	FuneralParlorId int `json:"funeralParlorId,omitempty"`
+	FireServiceId   int `json:"fireServiceId,omitempty"`
+	UrnStyleId      int `json:"urnStyleId,omitempty"`
+	CemeteryId      int `json:"cemeteryId,omitempty"`
 }

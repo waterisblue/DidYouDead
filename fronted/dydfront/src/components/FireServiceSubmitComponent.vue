@@ -22,7 +22,7 @@
         <v-divider></v-divider>
         <div class="submitBtns">
             <v-btn class="submitBtn" color="error" @click="checkUrl('/bubble')">取消</v-btn>
-            <v-btn class="submitBtn" color="info" @click="submitFireService">提交</v-btn>
+            <v-btn class="submitBtn" color="info" @click="submitFireService" :active="submitActive">提交 合计{{ amount }}元</v-btn>
         </div>
         <SnackBarComponent :snackText="snackText" :snackbar="snackBar" snackColor="waring" />
     </v-container>
@@ -52,9 +52,24 @@ function checkUrl(path){
 // snackBar
 let snackText = ref('')
 let snackBar = ref(false)
+let amount = ref(-1)
+let submitActive = ref(false)
+service = getService()
+
+console.log(service)
+axios.post('/loginafter/calAmount', {
+    "funeralParlorId": service.FuneralParlorId,
+    "fireServiceId": service.FireServiceId,
+    "urnStyleId": service.UrnStyleId,
+    "cemeteryId": service.CemeteryId
+}).then(res => {
+    amount.value = res.data.data.amount
+    submitActive.value = true
+})
+
 
 function submitFireService(){
-    service = getService()
+    
     let thatSnackBar = snackBar
     axios.post('/loginafter/uploadFireService', {
         Age: parseInt(service.Age),
@@ -68,7 +83,8 @@ function submitFireService(){
         PhoneNum: service.PhoneNum,
         Sex: service.Sex,
         UrnStyle: service.UrnStyle,
-        Name: service.Name
+        Name: service.Name,
+        Amount: amount.value
     }).then(res => {
         if(res.data.code == 200){
             thatSnackBar.value = true

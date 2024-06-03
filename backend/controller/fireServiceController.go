@@ -15,6 +15,7 @@ func FireServiceControllerRegister() {
 	loginAfter := engine.Group("/loginafter").Use(middleware.JWTAuthMiddleware())
 	loginAfter.POST("/uploadFireService", uploadFireService)
 	loginAfter.POST("/getFireServiceByUserName", getFireServiceByUserName)
+	loginAfter.POST("/calAmount", CalAmount)
 
 }
 
@@ -60,4 +61,25 @@ func getFireServiceByUserName(c *gin.Context) {
 		},
 	})
 	return
+}
+
+func CalAmount(c *gin.Context) {
+	var amountIds entity.AmountCalEntity
+	err := c.ShouldBind(&amountIds)
+	if err != nil {
+		log.Warning.Println(err)
+		c.JSON(http.StatusOK, gin.H{
+			"code": 304,
+			"msg":  "参数校验失败",
+		})
+		return
+	}
+	res := dao.CalAmount(amountIds)
+	c.JSON(http.StatusOK, gin.H{
+		"code": 200,
+		"msg":  "查询成功",
+		"data": gin.H{
+			"amount": res,
+		},
+	})
 }

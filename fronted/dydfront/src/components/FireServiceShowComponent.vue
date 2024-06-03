@@ -38,7 +38,7 @@
             </v-card-text>
             <template v-slot:actions v-if="!fireService.IsPay">
                 <v-btn text="修改方案" @click="$emit('changePlan', false)"></v-btn>
-                <v-btn text="支付并保存" @click="$emit('payService', fireService.id)"></v-btn>
+                <v-btn :text="'支付 ' + fireService.Amount + ' 元并保存'" @click="$emit('payService', fireService.id)"></v-btn>
             </template>
             <template v-slot:actions v-if="fireService.IsPay">
                 <v-btn text="已支付"></v-btn>
