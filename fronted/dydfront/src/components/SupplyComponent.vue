@@ -1,17 +1,18 @@
 <template>
     <v-container class="outerTestament">
+        <v-btn color="warning" style="margin-bottom: 3rem;" @click="router.push('/super/supply/add')">添加资源</v-btn>
+        
         <v-data-table-virtual :headers="supplyHeaders" :items="supply">
             <template v-slot:item.imgurl="{ item }">
-                <v-img :src="item.imgurl"></v-img>
+                <v-img :src="staticENV + item.imgurl"></v-img>
             </template>
             <template v-slot:item.type="{ item }">
                 {{ CheckType(item.type) }}
             </template>
             <template v-slot:item.delete="{ item }">
-                <v-btn color="error" @click="deleteUser(item)">删除</v-btn>
+                <v-btn color="error" @click="DeleteSupply(item)">删除</v-btn>
             </template>
         </v-data-table-virtual>
-        
         <SnackBarComponent :snackText="snackText" :snackbar="snackBar" snackColor="warning" />
     </v-container>
 
@@ -20,10 +21,14 @@
 import axios from '../axios';
 import { ref } from 'vue';
 import SnackBarComponent from './SnackBarComponent.vue';
+import router from '@/router';
 
 // snackBar
 let snackText = ref('')
 let snackBar = ref(false)
+
+
+let staticENV = ref(import.meta.env.VITE_STATIC_URL + '/imgfile/')
 
 let supplyHeaders = ref([
     {
@@ -44,8 +49,15 @@ axios.post('/loginafter/getsupply').then(res => {
     supply.value = res.data.data
 })
 
-function DeleteSupply(){
-    
+function DeleteSupply(item){
+    axios.post('/loginafter/deletesupply', {"id": item.id})
+    for(var i = 0; i < supply.value.length; i++){
+        if(supply.value[i].id == item.id) {
+            supply.value.splice(i, 1)
+        }
+    }
+    snackText.value = account + '删除成功'
+    snackBar.value = true
 }
 
 function CheckType(type) {

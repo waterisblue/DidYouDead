@@ -22,6 +22,7 @@ import FireServiceSubmitComponent from '@/components/FireServiceSubmitComponent.
 import RateScanComponent from '@/components/RateScanComponent.vue'
 import UserComponent from '@/components/UserComponent.vue'
 import SupplyComponent from '@/components/SupplyComponent.vue'
+import SupplyAddComponent from '@/components/SupplyAddComponent.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -116,6 +117,10 @@ const router = createRouter({
         {
           path: '/super/supply',
           component: SupplyComponent
+        },
+        {
+          path: '/super/supply/add',
+          component: SupplyAddComponent
         }
       ]
     },

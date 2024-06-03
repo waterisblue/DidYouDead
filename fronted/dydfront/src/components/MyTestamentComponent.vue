@@ -39,7 +39,7 @@ import SnackBarComponent from './SnackBarComponent.vue';
 let snackText = ref('')
 let snackBar = ref(false)
 
-let staticENV = ref(import.meta.env.VITE_STATIC_URL)
+let staticENV = ref(import.meta.env.VITE_STATIC_URL + '/testament/')
 let expanded = ref([])
 let dessertHeaders = ref([
     {
