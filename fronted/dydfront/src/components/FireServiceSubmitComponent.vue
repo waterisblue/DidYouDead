@@ -9,7 +9,7 @@
             <div class="detailtwo">
                 <div>家庭住址: {{service.Locate}}</div>
                 <div>手机号: {{service.PhoneNum}}</div>
-                <div>预约时间: {{service.OrderTime.toLocaleString()}}</div>
+                <div>预约时间: {{convertTime(service.OrderTime)}}</div>
             </div>
         </div>
         <v-divider></v-divider>
@@ -77,6 +77,14 @@ function submitFireService(){
             // setTimeout(() => {}, 1500)
         }
     })
+}
+
+
+function convertTime(time){
+    if (!time) {
+        return ""
+    }
+    return time.toLocaleString()
 }
 </script>
 

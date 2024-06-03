@@ -4,6 +4,9 @@
             <v-text-field hide-details="auto" label="资源名称" v-model="sourceName"></v-text-field>
         </div>
         <div>
+            <v-text-field hide-details="auto" label="资源简介" v-model="supplySubtitle"></v-text-field>
+        </div>
+        <div>
             <v-textarea label="资源描述" v-model="sourceDetail"></v-textarea>
         </div>
         <div class="designDiv">
@@ -37,6 +40,7 @@ import { useRouter } from 'vue-router';
 
 let sourceName = ref('')
 let sourceDetail = ref('')
+let supplySubtitle = ref('')
 let type = ref('')
 let price = ref(0)
 let files = ref(null)
@@ -55,6 +59,7 @@ function submitSource() {
     formData.append('imgfile', file)
     formData.append('sourcename', sourceName.value)
     formData.append('type', type.value)
+    formData.append('subtitle', supplySubtitle.value)
     formData.append('price', price.value)
     formData.append('sourcedetail', sourceDetail.value)
     axios.post('/loginafter/addsupply', formData, {

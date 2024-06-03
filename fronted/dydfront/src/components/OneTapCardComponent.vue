@@ -40,6 +40,7 @@ let show = ref(false)
 const router = useRouter()
 function checkUrl(path) {
   service.FuneralParlor = props.tapName
+  service.FuneralParlorId = props.tapId
   setService(service)
   router.push(path)
 }
@@ -48,7 +49,8 @@ const props = defineProps({
   tapImage: String,
   tapName: String,
   tapDetail: String,
-  tapSubTitle: String
+  tapSubTitle: String,
+  tapId: Int16Array
 })
 </script>
 

@@ -1,7 +1,8 @@
 <template>
+
     <v-container class="outerTestament">
         <v-btn color="warning" style="margin-bottom: 3rem;" @click="router.push('/super/supply/add')">添加资源</v-btn>
-        
+
         <v-data-table-virtual :headers="supplyHeaders" :items="supply">
             <template v-slot:item.imgurl="{ item }">
                 <v-img :src="staticENV + item.imgurl"></v-img>
@@ -38,7 +39,7 @@ let supplyHeaders = ref([
         key: 'imgurl',
     },
     { title: '资源名称', key: 'sourcename' },
-    { title: '资源描述', key: 'sourcedetail' },
+    { title: '资源简介', key: 'subtitle' },
     { title: '资源类型', key: 'type' },
     { title: '资源价格', key: 'price' },
     { title: '操作', key: 'delete' },
@@ -64,12 +65,14 @@ function CheckType(type) {
     switch (type) {
         case 1:
             return "殡仪馆"
-            break;
         case 2:
             return "墓地"
+        case 3:
+            return "火化方式"
+        case 4:
+            return "骨灰盒"
         default:
-            return "其他"
-            break;
+            return "未知"
     }
 }
 
@@ -80,7 +83,8 @@ function CheckType(type) {
 .outerTestament {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
+    margin-top: 10rem;
     height: 100vh;
 }
 

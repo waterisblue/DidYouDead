@@ -38,6 +38,8 @@ let show = ref(false)
 const router = useRouter()
 function checkUrl(path) {
   service.FireService = props.tapName
+  service.FireServiceId = props.tapId
+  console.log(service)
   setService(service)
   router.push(path)
 }
@@ -46,7 +48,8 @@ const props = defineProps({
   tapImage: String,
   tapName: String,
   tapDetail: String,
-  tapSubTitle: String
+  tapSubTitle: String,
+  tapId: Int16Array,
 })
 </script>
 

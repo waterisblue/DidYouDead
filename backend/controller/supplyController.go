@@ -20,6 +20,7 @@ func SupplyControllerRegister() {
 	loginAfter.POST("/getsupply", GetSupply)
 	loginAfter.POST("/addsupply", AddSupply)
 	loginAfter.POST("/deletesupply", DeleteSupply)
+	loginAfter.POST("/getsupplybytype", GetSupplyByType)
 }
 
 func GetSupply(c *gin.Context) {
@@ -31,10 +32,22 @@ func GetSupply(c *gin.Context) {
 	})
 }
 
+func GetSupplyByType(c *gin.Context) {
+	types, _ := c.GetQuery("type")
+	typeInt, _ := strconv.Atoi(types)
+	supplyList := dao.SelectSupplyByType(typeInt)
+	c.JSON(http.StatusOK, gin.H{
+		"code": 200,
+		"msg":  "查询成功！",
+		"data": supplyList,
+	})
+}
+
 func AddSupply(c *gin.Context) {
 	var supply entity.SupplyEntity
 
 	supply.SourceName = c.PostForm("sourcename")
+	supply.SubTitle = c.PostForm("subtitle")
 	supply.Type = CheckType(c.PostForm("type"))
 	price, err := strconv.Atoi(c.PostForm("price"))
 	if err != nil {

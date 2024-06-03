@@ -1,5 +1,5 @@
 <template>
-    <p>===集中园区===</p>
+    <!-- <p>===集中园区===</p>
     <div class="outer">
         
         <CemeteryLocateTapComponent  tap-image="/static/mu8.jpg" tap-name="傍山谧园" tap-sub-title="免费" tap-detail=""/>
@@ -21,31 +21,46 @@
         <CemeteryLocateTapComponent  tap-image="/static/hai.jpg" tap-name="家属单独海葬 " tap-sub-title="6999元" tap-detail=""/>
         <CemeteryLocateTapComponent tap-image="/static/hai2.jpg"  tap-name="海底墓园 " tap-sub-title="89999元" tap-detail="" />
         <CemeteryLocateTapComponent tap-image="/static/tai3.jpg" tap-name="太空葬 " tap-sub-title="139999元" tap-detail=""/>
-        
+    </div> -->
+    <div v-for="(chunk, index) in cemetryItems" :key="index" class="outer">
+        <CemeteryLocateTapComponent v-for="item in chunk" :key="item.id" :tap-id="item.id" :tap-image="staticENV + item.imgurl" :tap-name="item.sourcename" :tap-sub-title="item.subtitle" :tap-detail="item.sourcedetail" />
     </div>
 </template>
 
 <script setup>
 import CemeteryLocateTapComponent from '@/components/CemeteryLocateTapComponent.vue'
-
 import { useTimeLineStore } from '@/stores/user';
-import { storeToRefs } from 'pinia';
+import axios from '../axios';
+import { ref } from 'vue';
+import { computed } from 'vue';
 
-const {timeLineStore, setTimeLineInfo} = useTimeLineStore()
 
-const {timeLineInfo} = storeToRefs(timeLineStore)
+const { setTimeLineInfo} = useTimeLineStore()
+let staticENV = ref(import.meta.env.VITE_STATIC_URL + '/imgfile/')
+
 setTimeLineInfo('five')
+
+
+let cemeteries = ref([])
+axios.post('/loginafter/getsupplybytype?type=2').then(res => {
+    cemeteries.value = res.data.data
+})
+
+const cemetryItems = computed(() => {
+  const chunkSize = 4;
+  const result = [];
+  for (let i = 0; i < cemeteries.value.length; i += chunkSize) {
+    result.push(cemeteries.value.slice(i, i + chunkSize));
+  }
+  console.log(result)
+  return result;
+})
 </script>
 
 <style lang="less" scoped>
 .outer {
     height: 45vh;
     display: flex;
-    
-    //  padding: 20px;
-     
-    // flex-direction: row;
-    // justify-content: space-around;
 }
 p{
 font-size: 1.1rem;

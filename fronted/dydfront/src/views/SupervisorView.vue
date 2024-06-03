@@ -1,6 +1,6 @@
 <template>
       <v-layout class="rounded rounded-md">
-        <v-app-bar title="DidYouDead">
+        <v-app-bar title="DidYouDead Management">
             <v-btn @click="checkUrl('/bubble')">返回菜单</v-btn>
         </v-app-bar>
 
@@ -26,11 +26,10 @@
 </style>
 
 <script setup>
-import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
-// 用于vue-router
+
 function checkUrl(path) {
     router.push(path)
 }
