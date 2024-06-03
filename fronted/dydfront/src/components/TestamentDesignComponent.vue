@@ -13,7 +13,7 @@
             <v-select label="遗嘱形式" v-model="testamentStyle" :items="['自书遗嘱', '代书遗嘱', '打印遗嘱', '公证遗嘱']"></v-select>
         </div>
         <div class="testamentBtns">
-            <v-btn class="btn" color="error">
+            <v-btn class="btn" color="error" @click="clearTestament">
                 清空
             </v-btn>
             <v-btn class="btn" color="info" @click="submitTestament">
@@ -40,6 +40,14 @@ let snackText = ref('')
 let snackBar = ref(false)
 
 const router = useRouter()
+
+function clearTestament() {
+    testamentDetail.value = ''
+    testamentStyle.value = ''
+    testamentName.value = ''
+    files.value = null
+}
+
 
 function submitTestament() {
     let file = null
