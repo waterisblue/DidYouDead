@@ -1,0 +1,14 @@
+Git安装：https://blog.csdn.net/mukes/article/details/115693833
+Gitee配置ssh公钥：https://blog.csdn.net/m0_61300098/article/details/127212436
+
+git需要学习的基本命令：
+1、git clone
+2、git pull
+3、git add
+4、git commit
+5、git push
+
+
+Vue教程：https://cn.vuejs.org/guide/introduction.html
+Vuetify UI库教程：https://vuetifyjs.com/zh-Hans/getting-started/installation/#section-5b8988c5
+Gin教程：https://gin-gonic.com/zh-cn/docs/
