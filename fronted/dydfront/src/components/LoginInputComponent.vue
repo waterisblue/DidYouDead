@@ -5,6 +5,7 @@
         :label="inputText"
         @input="$emit('sendInputData', inputValue)"
         v-model="inputValue"
+        :type="props.showPassword ? 'text' : 'password'"
         :rules="thisRules"
         ></v-text-field>
     </div>
@@ -22,6 +23,7 @@
     let inputValue = ref('')
     const props = defineProps({
         inputText: String,
-        thisRules: Object
+        thisRules: Object,
+        showPassword: Boolean
     })
 </script>

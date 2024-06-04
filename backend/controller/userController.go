@@ -13,15 +13,8 @@ import (
 func UserControllerRegister(handler ...func() func(*gin.Context)) {
 	engine := getEngine()
 
-	engine.Group("/loginbefore")
-	{
-		engine.POST("/registeruser", registerUser)
-	}
-
-	engine.Group("/loginafter", middleware.JWTAuthMiddleware())
-	{
-		engine.POST("/getuseradmin", middleware.JWTAuthMiddleware(), getUserAdministartor)
-	}
+	engine.POST("/registeruser", registerUser)
+	engine.POST("/getuseradmin", middleware.JWTAuthMiddleware(), getUserAdministartor)
 
 	loginafter := engine.Group("/loginafter", middleware.CorsMiddleware(), middleware.JWTAuthMiddleware())
 	loginafter.POST("/getalluser", GetAllUser)

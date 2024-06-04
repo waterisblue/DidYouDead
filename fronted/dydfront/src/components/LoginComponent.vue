@@ -1,7 +1,7 @@
 <template>
     <transition name="fullLogin" appear>
         <div class="loginWindow">
-            <LoginInputComponent @send-input-data="(username) => user.username = username" inputText="账号" />
+            <LoginInputComponent @send-input-data="(username) => user.username = username" inputText="账号" show-password=true />
             <LoginInputComponent @send-input-data="(password) => user.password = password" inputText="密码" /> 
                 <div class="btns">
                 <div class="loginBtn">

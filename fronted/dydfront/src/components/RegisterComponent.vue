@@ -1,6 +1,6 @@
 <template>
     <div class="registerWindow">
-        <LoginInputComponent @send-input-data="(username) => user.username = username" :thisRules="accountRules"
+        <LoginInputComponent @send-input-data="(username) => user.username = username" :thisRules="accountRules" show-password="false"
             inputText="账号" />
         <LoginInputComponent @send-input-data="(password) => user.password = password" :thisRules="passwordRules"
             inputText="密码" />
