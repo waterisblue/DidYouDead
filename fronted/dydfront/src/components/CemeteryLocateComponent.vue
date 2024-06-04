@@ -1,13 +1,13 @@
 <template>
-    <!-- <p>===集中园区===</p>
-    <div class="outer">
+   <p>===除最后一行服务项目外，其他项目均不额外收费===</p>
+    <!--  <div class="outer">
         
         <CemeteryLocateTapComponent  tap-image="/static/mu8.jpg" tap-name="傍山谧园" tap-sub-title="免费" tap-detail=""/>
         <CemeteryLocateTapComponent tap-image="/static/mu12.jpg"  tap-name="传统园区" tap-sub-title="免费" tap-detail="" />
         <CemeteryLocateTapComponent tap-image="/static/mu9.jpg" tap-name="绿色伴生园" tap-sub-title="免费" tap-detail=""/>
         <CemeteryLocateTapComponent tap-image="/static/mu13jpg.jpg" tap-name="诗意长眠园" tap-sub-title="免费" tap-detail=""/>
     </div>
-    <p>===独立园区===</p>
+    <p>===除最后一行服务项目外，其他项目均不额外收费===</p>
     <div class="outer">
         
         <CemeteryLocateTapComponent  tap-image="/static/mu11jpg.jpg" tap-name="肃穆简约区" tap-sub-title="免费" tap-detail=""/>

@@ -9,7 +9,9 @@
             </div>
             <RouterView />
             <div class="logoWindow"></div>
-            <h2>111111111111111111111111111111111111</h2>
+            <h2>Dear customer, </h2>
+            <h2> your loved ones have passed away, </h2>
+            <h2> the ferryman sincerely hopes that you will come out of your pain and embrace the future.</h2>          
         </div>
 
     </v-container>
@@ -79,5 +81,8 @@ let name = 'LoginView'
     /* 确保视频在内容之下 */
     background-size: cover;
     float: left;
+}
+h2{
+    color: rgba(223, 225, 227, 0.676);
 }
 </style>
