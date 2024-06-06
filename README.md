@@ -46,4 +46,4 @@ go run main.go
 ![心率检测服务](./readmeimgs/rateLooking.png) 
 
 
-PS：内部提供一个可用的公网Mysql用于测试，如果被攻击会停止，由于mysql中无任何有用数据，所以不怕被敲诈
+<!-- PS：内部提供一个可用的公网Mysql用于测试，如果被攻击会停止，由于mysql中无任何有用数据，所以不怕被敲诈 -->
